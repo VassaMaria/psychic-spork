@@ -1,0 +1,30 @@
+{\rtf1}
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Admin Panel</h1>
+<form method="POST" class="mb-4">
+    <div class="mb-3">
+        <label class="form-label">Product Name</label>
+        <input type="text" name="name" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Price</label>
+        <input type="number" step="0.01" name="price" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-success">Add Product</button>
+</form>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for product in products %}
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text">Price: ${{ "%.2f"|format(product.price) }}</p>
+                <p class="card-text">Sales: {{ product.sales }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

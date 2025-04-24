@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Recommended Products</h1>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for product in products %}
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text">Price: ${{ "%.2f"|format(product.price) }}</p>
+                <button class="btn btn-primary" onclick="addToCart({{ product.id }})">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

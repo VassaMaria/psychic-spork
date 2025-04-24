@@ -1,0 +1,31 @@
+{\rtf1}
+{% extends "base.html" %}
+{% block content %}
+<h1>Sales Analytics</h1>
+<canvas id="salesChart" width="400" height="200"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const products = {{ products|tojson }};
+    const labels = products.map(p => p.name);
+    const data = products.map(p => p.sales);
+    
+    new Chart(document.getElementById('salesChart'), {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Sales',
+                data: data,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+</script>
+{% endblock %}
